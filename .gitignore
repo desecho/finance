@@ -1,0 +1,7 @@
+__pycache__
+.tox
+*.pyc
+
+# OS X meta data
+._*
+.DS_Store
