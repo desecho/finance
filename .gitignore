@@ -1,3 +1,4 @@
+src/financeapp/static/bower/
 __pycache__
 .tox
 *.pyc

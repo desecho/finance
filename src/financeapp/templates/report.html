@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Report</h1>
+
+<h2>{{ start_date|date:'F Y' }}</h2>
+<div class="row">
+  <div class="col-sm-5">
+    <table class="table">
+    {% for expense in expenses %}
+      <tr>
+        <td><a href="/admin/financeapp/expense/?drf__date__gte={{ start_date|date:'Y-m-d' }}&drf__date__lte={{ end_date|date:'Y-m-d' }}&category__id__exact={{ expense.category__pk }}&o=-4.-2" target="_blank">{{ expense.category__name }}</a></td>
+        <td>-${{ expense.sum }}</td>
+      </tr>
+    {% endfor %}
+    <tr><td colspan="2"><hr></td></tr>
+    {% for expense in regular_expenses %}
+      <tr>
+        <td>{{ expense.category__name }}</td>
+        <td>-${{ expense.sum }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+</div>
+
+Total income: +${{ total_income }}<br>
+Essential expenses: -${{ essential_expenses }}<br>
+Result (after essential expenses): ${{ income_minus_essentials }}<br>
+Other expenses: -${{ other_expenses }} ({{ other_expenses_percentage }}%)<br>
+Total expenses: -${{ total_expenses }}<br>
+Result: ${{ result_real }}<br>
+Result (temporary): ${{ result_temp }}
+{% endblock %}
+
+
+
+
